@@ -5,17 +5,24 @@ use std::collections::HashSet;
 fn main() {
     println!("Hi! Try running \"cargo test\" to run tests.");
 }
-
+// create a new vector from old vector
+// we need to consume the old vector and build a new vector
+// use into_iter
 fn add_n(v: Vec<i32>, n: i32) -> Vec<i32> {
-    unimplemented!()
+    //v.iter().map(|v| *v + n).collect()
+    v.into_iter().map(|v| v + n).collect()
 }
 
+// modify the value in place
+// we need to execute the iterator by using collect and Vec<_>
 fn add_n_inplace(v: &mut Vec<i32>, n: i32) {
-    unimplemented!()
+    let _: Vec<_> = v.iter_mut().map(|v| *v += n).collect();
 }
 
+// use Hashset and retain function to remove the elements from vector
 fn dedup(v: &mut Vec<i32>) {
-    unimplemented!()
+    let mut uniques = HashSet::new();
+    v.retain(|e| uniques.insert(*e));
 }
 
 #[cfg(test)]
